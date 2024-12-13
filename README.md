@@ -35,7 +35,7 @@ This game was built with the following objectives:
 - **Hero Sprite Movement**: The player controls the hero sprite, which moves around the dungeon.
 - **Collision Detection**: The physics engine detects and handles collisions between dynamic sprites (e.g., the hero) and solid objects (e.g., traps).
 - **Trap Mechanics**: Traps cause health loss when the hero collides with them.
-- **Health Indicator**: A health bar tracks the hero's remaining health and triggers a game-over when health reaches zero.
+- **Health Indicator**: A health bar tracks the hero's remaining health and triggers a game-over when health reaches zero. The player can press start to restart the game. 
 - **Static Dungeon**: The dungeon layout is pre-defined and displayed.
 
 ---
