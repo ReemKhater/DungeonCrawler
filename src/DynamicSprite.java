@@ -32,6 +32,9 @@ public class DynamicSprite extends SolidSprite{
         }
 
         for (Sprite s : environment){
+            // skip traps in collision checks
+            if (s instanceof Trap) continue;
+
             if ((s instanceof SolidSprite) && (s!=this)){
                 if (((SolidSprite) s).intersect(moved)){
                     return false;

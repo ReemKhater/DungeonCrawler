@@ -1,40 +1,37 @@
+import javax.swing.*;
+import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
 public class GameEngine implements Engine, KeyListener {
     DynamicSprite hero;
 
-    //instance
+    // Instance
     private HealthIndicator healthIndicator;
 
-    public GameEngine(DynamicSprite hero, HealthIndicator healthIndicator) {
+    // Game screen dimensions (passed from Main)
+    private int screenWidth;
+    private int screenHeight;
+
+    public GameEngine(DynamicSprite hero, HealthIndicator healthIndicator, int screenWidth, int screenHeight) {
         this.hero = hero;
         this.healthIndicator = healthIndicator;
+        this.screenWidth = screenWidth;
+        this.screenHeight = screenHeight;
     }
 
     @Override
     public void update() {
-        if (healthIndicator.isDead()) {
-            //Trigger Game Over logic
-            triggerGameOver();
-        }
-    }
-
-    private void triggerGameOver() {
-        System.out.println("Game Over");
-        GameOver gameOver = new GameOver();
-        gameOver.displayGameOver();
     }
 
     @Override
     public void keyTyped(KeyEvent e) {
-
     }
 
     @Override
     public void keyPressed(KeyEvent e) {
-        switch(e.getKeyCode()){
-            case KeyEvent.VK_UP :
+        switch (e.getKeyCode()) {
+            case KeyEvent.VK_UP:
                 hero.setDirection(Direction.NORTH);
                 break;
             case KeyEvent.VK_DOWN:
@@ -46,12 +43,10 @@ public class GameEngine implements Engine, KeyListener {
             case KeyEvent.VK_RIGHT:
                 hero.setDirection(Direction.EAST);
                 break;
-
         }
     }
 
     @Override
     public void keyReleased(KeyEvent e) {
-
     }
 }

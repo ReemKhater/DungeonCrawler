@@ -48,7 +48,7 @@ public class Playground {
                                     imageTrap,
                                     imageTrap.getWidth(null),
                                     imageTrap.getHeight(null),
-                                    20 // Damage value
+                                    5 // Damage value
                             ));
                             break;
                     }

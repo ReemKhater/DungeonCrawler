@@ -1,35 +1,47 @@
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 
-public class GameOver {
+public class GameOver extends JPanel implements KeyListener {
     private int width;
     private int height;
+    private Runnable resetCallback;
 
-    //constructor
-    public GameOver() {
+    public GameOver(int width, int height, Runnable resetCallback) {
         this.width = width;
         this.height = height;
+        this.resetCallback = resetCallback;
+
+        setPreferredSize(new Dimension(width, height));
     }
 
-    public void displayGameOver(){
-        JFrame gameOverFrame = new JFrame("Game Over");
-        JLabel label = new JLabel("You died. Game Over.", SwingConstants.CENTER );
-        label.setFont(label.getFont().deriveFont(32.0f));
-        gameOverFrame.add(label);
-        gameOverFrame.setSize(400, 200);
-        gameOverFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        gameOverFrame.setLocationRelativeTo(null);
-        gameOverFrame.setVisible(true);
-    }
-
-    public void draw(Graphics g) {
-        // Clear the screen and set black background color
+    @Override
+    protected void paintComponent(Graphics g) {
+        super.paintComponent(g);
         g.setColor(Color.BLACK);
         g.fillRect(0, 0, width, height);
-
-        // Display "Game Over" text in white
         g.setColor(Color.WHITE);
-        g.setFont(new Font("Arial", Font.BOLD, 48));
-        g.drawString("GAME OVER", width / 2 - 150, height / 2);
+        g.setFont(new Font("Arial", Font.BOLD, 36));
+        g.drawString("Game Over", width / 2 - 100, height / 2 - 50);
+        g.setFont(new Font("Arial", Font.PLAIN, 18));
+        g.drawString("Press Enter to Restart", width / 2 - 100, height / 2);
+    }
+
+    @Override
+    public void keyTyped(KeyEvent e) {
+    }
+
+    @Override
+    public void keyPressed(KeyEvent e) {
+        if (e.getKeyCode() == KeyEvent.VK_ENTER) {
+            if (resetCallback != null) {
+                resetCallback.run(); // Trigger the reset logic
+            }
+        }
+    }
+
+    @Override
+    public void keyReleased(KeyEvent e) {
     }
 }
